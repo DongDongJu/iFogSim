@@ -86,9 +86,9 @@ public class VmSchedulerTimeSharedOverbookingEnergy extends VmSchedulerTimeShare
 		double totalMips = getTotalMips();
 		double usingMips = totalMips - this.getAvailableMips();
 
-		if(usingMips < 0) {
-			System.err.println("addUtilizationEntry : using mips is negative, No way!");
-		}
+		//if(usingMips < 0) {
+		//	System.err.println("addUtilizationEntry : using mips is negative, No way!");
+		//}
 		if(utilizationHistories == null)
 			utilizationHistories = new ArrayList<PowerUtilizationHistoryEntry>();
 		this.utilizationHistories.add(new PowerUtilizationHistoryEntry(time, usingMips));

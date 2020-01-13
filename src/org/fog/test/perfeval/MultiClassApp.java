@@ -426,7 +426,7 @@ public class MultiClassApp {
 		int class_num = info.CLASS_NUM - 1;
 		// 1. make cloud device
 		FogDevice cloud = createFogDevice("cloud", info.CLOUD_MIPS[class_num], 32000, info.CLOUD_UPBW[class_num],
-				info.CLOUD_DOWNBW[class_num], 0, 0.01, 100, 0, info);
+				info.CLOUD_DOWNBW[class_num], 0, 0.01, 0, 0, info);
 
 		cloud.setParentId(-1);
 		fogDevices.add(cloud);
@@ -434,7 +434,7 @@ public class MultiClassApp {
 		// 2. make fog device
 		// bandwidth(kb/s)
 		FogDevice fog = createFogDevice("fog-layer", info.FOG_MIPS, 8000, info.FOG_UPBW[class_num],
-				info.FOG_DOWNBW[class_num], 1, 0.0, 8, 0, info);
+				info.FOG_DOWNBW[class_num], 1, 0.0, 0, 0, info);
 		fog.setParentId(cloud.getId());
 		fog.setUplinkLatency(info.FOG_TO_CLOUD_LATENCY);
 		fogDevices.add(fog);
@@ -443,7 +443,7 @@ public class MultiClassApp {
 		for (int i = 0; i < info.numOfSensorNode; i++) {
 			String sensorNodeId = "0-" + i;
 			FogDevice sensorNode = createFogDevice("m-" + sensorNodeId, info.EDGE_MIPS[class_num], 1000,
-					info.EDGE_UPBW[class_num], info.EDGE_DOWNBW[class_num], 2, 0, 1.0815, 0, info);
+					info.EDGE_UPBW[class_num], info.EDGE_DOWNBW[class_num], 2, 0.5, 1.0815, 0, info);
 			sensorNode.setParentId(fog.getId());
 			sensorNode.setUplinkLatency(info.EDGE_TO_FOG_LATENCY);
 			fogDevices.add(sensorNode);
