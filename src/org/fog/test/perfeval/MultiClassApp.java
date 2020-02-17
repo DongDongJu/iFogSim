@@ -425,6 +425,7 @@ public class MultiClassApp {
 		ModuleMapping moduleMapping = ModuleMapping.createModuleMapping();
 		int class_num = info.CLASS_NUM - 1;
 		// 1. make cloud device
+		System.out.println(class_num);
 		FogDevice cloud = createFogDevice("cloud", info.CLOUD_MIPS[class_num], 32000, info.CLOUD_UPBW[class_num],
 				info.CLOUD_DOWNBW[class_num], 0, 0.01, 0, 0, info);
 

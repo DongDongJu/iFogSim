@@ -1046,7 +1046,8 @@ public class FogDevice extends PowerDatacenter {
 //		System.out.println(bw);
 		newbw = Math.min(max_tp, cal_tp) * 1024;
 //		System.out.println(newbw);
-		newbw = bw;
+		if(ClassInfo.using_packet_loss_simulation != 1)
+			newbw = bw;
 		return fileSize / newbw;
 	}
 

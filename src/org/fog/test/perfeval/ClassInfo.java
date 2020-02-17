@@ -25,6 +25,7 @@ public class ClassInfo {
 	static List<Integer> random_idx = null;
 
 	static int using_res_map = 0;
+	public static int using_packet_loss_simulation = 0;
 	// data[class_num][packet_loss][num_of_instance]
 	static int[][][] res_map = {
 			{ { 2, 2, 2, 2, 2, 2, 2, 2 }, { 2, 2, 2, 2, 2, 2, 2, 2 }, { 2, 2, 2, 2, 2, 2, 2, 2 },
@@ -65,7 +66,7 @@ public class ClassInfo {
 	static int ENABLE_LOG = 0;
 
 	static int OFFLOADING_POLICY = -1;
-	public static int CLASS_NUM = -1;
+	public static int CLASS_NUM;
 	static int SINGLE_APP = 0;
 //	public static int CLASS1_MIPS = 3290000;
 //	public static int CLASS2_MIPS = 103657;
@@ -251,6 +252,11 @@ public class ClassInfo {
 		int class_num = CLASS_NUM - 1;
 		ClassInfo.EDGE_UPBW[class_num] = EDGE_UP_BW_ALL_CLASS[class_num][0];
 		ClassInfo.FOG_DOWNBW[class_num] = FOG_DOWN_BW_ALL_CLASS[class_num][0];
+		if(using_packet_loss_simulation == 1) {
+			ClassInfo.FOG_UPBW[class_num] = FOG_UP_BW_ALL_CLASS[class_num][CLOUD_NETWORK];
+			ClassInfo.CLOUD_DOWNBW[class_num] = CLOUD_DOWN_BW_ALL_CLASS[class_num][CLOUD_NETWORK];
+			return;
+		}
 		switch (ClassInfo.PACKET_LOSS) {
 		case 2:
 			ClassInfo.EDGE_UPBW[class_num] = EDGE_UP_BW_ALL_CLASS[class_num][1];
@@ -378,6 +384,7 @@ public class ClassInfo {
 		origin_data = t.get(15).split("=");
 		value = origin_data[origin_data.length - 1];
 		configs = appendValue(configs, Integer.valueOf(value));
+		System.out.println(CLASS_NUM);
 		CLASS_NUM = Integer.valueOf(value);
 
 		origin_data = t.get(16).split("=");
@@ -404,7 +411,7 @@ public class ClassInfo {
 		value = origin_data[origin_data.length - 1];
 		configs = appendValue(configs, Integer.valueOf(value));
 		using_res_map = Integer.valueOf(value);
-
+		
 		origin_data = t.get(21).split("=");
 		value = origin_data[origin_data.length - 1];
 		String[] runs = value.split(",");
@@ -412,6 +419,12 @@ public class ClassInfo {
 			RUNNING_REGION.add(x, Integer.valueOf(runs[x]));
 		}
 		setFogPacketLossAndCloudNetwork();
+		
+		origin_data = t.get(22).split("=");
+		value = origin_data[origin_data.length - 1];
+		configs = appendValue(configs, Integer.valueOf(value));
+		using_packet_loss_simulation = Integer.valueOf(value);
+		
 	}
 
 	private static void setNumberOfApps(String ratio) {
@@ -497,6 +510,8 @@ public class ClassInfo {
 			}
 		}
 		Log.printLine(number_of_each_class);
+		
+		
 
 	}
 
