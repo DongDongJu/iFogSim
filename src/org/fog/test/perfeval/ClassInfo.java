@@ -25,7 +25,6 @@ public class ClassInfo {
 	static List<Integer> random_idx = null;
 
 	static int using_res_map = 0;
-	public static int using_packet_loss_simulation = 0;
 	// data[class_num][packet_loss][num_of_instance]
 	static int[][][] res_map = {
 			{ { 2, 2, 2, 2, 2, 2, 2, 2 }, { 2, 2, 2, 2, 2, 2, 2, 2 }, { 2, 2, 2, 2, 2, 2, 2, 2 },
@@ -66,16 +65,8 @@ public class ClassInfo {
 	static int ENABLE_LOG = 0;
 
 	static int OFFLOADING_POLICY = -1;
-	public static int CLASS_NUM;
+	public static int CLASS_NUM = -1;
 	static int SINGLE_APP = 0;
-<<<<<<< HEAD
-//	public static int CLASS1_MIPS = 3290000;
-//	public static int CLASS2_MIPS = 103657;
-//	public static int CLASS3_MIPS = 1000000;
-//	public static int CLASS4_MIPS = 59000;
-//	static int CLOUD_MIPS[] = { 727000, 225000, 225000, 225000 };
-//	static int FOG_MIPS = 84000;
-=======
 	public static int CLASS1_MIPS = 3290000;
 	public static int CLASS2_MIPS = 103657;
 	public static int CLASS3_MIPS = 1000000;
@@ -83,22 +74,9 @@ public class ClassInfo {
 	//static int CLOUD_MIPS[] = { 727000, 275000, 225000, 225000 };
 	static Double CLOUD_MIPS[] = { 727000.0, 225000.0, 225000.0, 225000.0 };
 	static Double FOG_MIPS = 84000.0;
->>>>>>> refs/heads/origin/master
 	//static int EDGE_MIPS[] = { 2636, 2280, 2225, 2225 };
-<<<<<<< HEAD
-//	static int EDGE_MIPS[] = { 2636, 2225, 2225, 2225 };
-
-	public static int CLASS1_MIPS = 2000;
-	public static int CLASS2_MIPS = 1000;
-	public static int CLASS3_MIPS = 2000;
-	public static int CLASS4_MIPS = 20000;
-	static int CLOUD_MIPS[] = {5000, 5000, 5000, 5000};
-	static int FOG_MIPS = 150;
-	static int EDGE_MIPS[] = {75, 75,75,75 };
-=======
 	static Double EDGE_MIPS[] = { 2636.0, 2225.0, 2225.0, 2225.0 };
 	
->>>>>>> refs/heads/origin/master
 	// class3
 	static double EDGE_UPBW[] = { 2187000, 2187000, 2187000, 2187000 };
 	static double EDGE_DOWNBW[] = { -1, -1, -1, -1 };
@@ -107,26 +85,6 @@ public class ClassInfo {
 	static double CLOUD_UPBW[] = { -1, -1, -1, -1 };
 	static double CLOUD_DOWNBW[] = { 1500000, 1500000, 1500000, 1500000 };
 
-<<<<<<< HEAD
-//	static double CLASS1_INPUT_SIZE = 164000 / 1024;
-//	static double CLASS1_OUTPUT_SIZE = 161 / 1024;
-//	static double CLASS2_INPUT_SIZE = 14000000 / 1024;
-//	static double CLASS2_OUTPUT_SIZE = 615000 / 1024;
-//	static double CLASS3_INPUT_SIZE = 8200000 / 1024;
-//	static double CLASS3_OUTPUT_SIZE = 8200000 / 1024;
-//	static double CLASS4_INPUT_SIZE = 145536 / 1024;
-//	static double CLASS4_OUTPUT_SIZE = 13846510 / 1024;
-	static double CLASS1_INPUT_SIZE = 150.0;
-	static double CLASS1_OUTPUT_SIZE = 4.0;
-	static double CLASS2_INPUT_SIZE = 150.0;
-	static double CLASS2_OUTPUT_SIZE = 150.0;
-	static double CLASS3_INPUT_SIZE = 4.0;
-	static double CLASS3_OUTPUT_SIZE = 150.0;
-	static double CLASS4_INPUT_SIZE = 500.0;
-	static double CLASS4_OUTPUT_SIZE = 500.0;
-
-	
-=======
 	static double CLASS1_INPUT_SIZE = 164000 / 1024;
 	static double CLASS1_OUTPUT_SIZE = 161 / 1024;
 	static double CLASS2_INPUT_SIZE = 14000000 / 1024;
@@ -137,7 +95,6 @@ public class ClassInfo {
 	static double CLASS4_OUTPUT_SIZE = 13846510 / 1024;
 	
 	static double FOG_APP_MIPS = 0;
->>>>>>> refs/heads/origin/master
 	static int CLOUD_NETWORK = -1;
 	public static int PACKET_LOSS = -1;
 
@@ -289,20 +246,10 @@ public class ClassInfo {
 
 	public static void setFogPacketLossAndCloudNetwork() {
 		int class_num = CLASS_NUM - 1;
-<<<<<<< HEAD
-		ClassInfo.EDGE_UPBW[class_num] = EDGE_UP_BW_ALL_CLASS[class_num][0];
-		ClassInfo.FOG_DOWNBW[class_num] = FOG_DOWN_BW_ALL_CLASS[class_num][0];
-		if(using_packet_loss_simulation == 1) {
-			ClassInfo.FOG_UPBW[class_num] = FOG_UP_BW_ALL_CLASS[class_num][CLOUD_NETWORK];
-			ClassInfo.CLOUD_DOWNBW[class_num] = CLOUD_DOWN_BW_ALL_CLASS[class_num][CLOUD_NETWORK];
-			return;
-		}
-=======
 		if(class_num == 4)
 			class_num = 3;
 		ClassInfo.EDGE_UPBW[class_num] = VIRT_EDGE_UP_BW_ALL_CLASS[class_num][0];
 		ClassInfo.FOG_DOWNBW[class_num] = VIRT_FOG_DOWN_BW_ALL_CLASS[class_num][0];
->>>>>>> refs/heads/origin/master
 		switch (ClassInfo.PACKET_LOSS) {
 		case 2:
 			ClassInfo.EDGE_UPBW[class_num] = VIRT_EDGE_UP_BW_ALL_CLASS[class_num][1];
@@ -430,7 +377,6 @@ public class ClassInfo {
 		origin_data = t.get(15).split("=");
 		value = origin_data[origin_data.length - 1];
 		configs = appendValue(configs, Integer.valueOf(value));
-		System.out.println(CLASS_NUM);
 		CLASS_NUM = Integer.valueOf(value);
 
 		origin_data = t.get(16).split("=");
@@ -457,7 +403,7 @@ public class ClassInfo {
 		value = origin_data[origin_data.length - 1];
 		configs = appendValue(configs, Integer.valueOf(value));
 		using_res_map = Integer.valueOf(value);
-		
+
 		origin_data = t.get(21).split("=");
 		value = origin_data[origin_data.length - 1];
 		String[] runs = value.split(",");
@@ -485,12 +431,6 @@ public class ClassInfo {
 		value = origin_data[origin_data.length - 1];
 		FOG_APP_MIPS = Double.valueOf(value);
 		setFogPacketLossAndCloudNetwork();
-		
-		origin_data = t.get(22).split("=");
-		value = origin_data[origin_data.length - 1];
-		configs = appendValue(configs, Integer.valueOf(value));
-		using_packet_loss_simulation = Integer.valueOf(value);
-		
 	}
 
 	private static void setNumberOfApps(String ratio) {
@@ -576,8 +516,6 @@ public class ClassInfo {
 			}
 		}
 		Log.printLine(number_of_each_class);
-		
-		
 
 	}
 

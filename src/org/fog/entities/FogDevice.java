@@ -1055,12 +1055,7 @@ public class FogDevice extends PowerDatacenter {
 		if (newbw > bw)
 			newbw = bw;
 //		System.out.println(newbw);
-<<<<<<< HEAD
-		if(ClassInfo.using_packet_loss_simulation != 1)
-			newbw = bw;
-=======
 //		newbw = bw;
->>>>>>> refs/heads/origin/master
 		return fileSize / newbw;
 	}
 
