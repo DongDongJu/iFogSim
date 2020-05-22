@@ -33,7 +33,7 @@ git pull origin master
 *   if you run with MultiClassApp.java with file output then, you can get below results, (set FILE_OUTPUT option in config file)
 ```
 	Total execution time	,
-    Average Latency of Control Loop (application Loop),
+	Average Latency of Control Loop (application Loop),
     	Energy Consumption[cloud],
     	Energy Consumption[fog-layer],
     	Energy Consumption of each device,	
@@ -42,7 +42,7 @@ git pull origin master
 
 ## Get Result by using terminal
 *	requirement : java8
-*   export your sample app as jar type (ex jars/ifogsim_arr.jar)
+*       export your sample app as jar type (ex jars/ifogsim_arr.jar)
 *	run with config file (ex configs/*.config)
 * 	run
 ```
