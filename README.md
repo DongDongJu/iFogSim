@@ -29,7 +29,7 @@ git pull origin master
 ## Get Result using file
 
 *   check src/org/fog/utils/Config class
-*	you can get result as csv file format. 
+*   you can get result as csv file format. 
 *   if you run with MultiClassApp.java with file output then, you can get below results, (set FILE_OUTPUT option in config file)
 ```
 	Total execution time	,
@@ -41,10 +41,10 @@ git pull origin master
 ```
 
 ## Get Result by using terminal
-*	requirement : java8
-*       export your sample app as jar type (ex jars/ifogsim_arr.jar)
-*	run with config file (ex configs/*.config)
-* 	run
+*   requirement : java8
+*   export your sample app as jar type (ex jars/ifogsim_arr.jar)
+*   run with config file (ex configs/*.config)
+*   run
 ```
 	java -jar jars/ifogsim_arr.jar configs/1.config
 ```
