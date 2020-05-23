@@ -20,11 +20,23 @@ git pull origin master
 ```
 * Include the JARs (except the CloudSim ones) to your Eclipse project.  
 
+## How to export JAR file
+
+### eclipse
+
+1. right click on your project
+
+2. click export-java-Runnable JAR file
+
+3. check library handling method what you want
+
+4. make sure your JAR file path
+
 ## How to run example 
 
-* go to src/org/fog/test/perfeval
+1. go to src/org/fog/test/perfeval
 
-* run example files in there with JAVA
+2. run example files in there with JAVA
 
 ## Get Result using file
 
