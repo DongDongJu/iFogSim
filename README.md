@@ -58,7 +58,7 @@ git pull origin master
 *   run with config file (ex configs/*.config)
 *   run
 ```
-	java -jar jars/ifogsim_arr.jar configs/4_test.config
+	java -jar jars/ifogsim_two_layer.jar configs/4_test.config
 ```
 *	then you can get result file where path in config file.
 
